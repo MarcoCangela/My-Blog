@@ -6,16 +6,21 @@ import PageMeta from "../components/PageMeta.astro";
 import { SITE_TITLE } from "../config";
 
 
-const fetchMediumPosts = async () => {
+async function fetchMediumPosts (){
   const response = await fetch('https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@marcogarujo');
   const data = await response.json();
   
   if (data.status === 'ok') {
     data.items.forEach((item) => {
       console.log(`Post Tiltle: ${item.title}`);
+      console.log(`Post Published at: ${item.pubDate}`);
+      console.log(`Post Original Link: ${item.link}`);
+      console.log(`Post Author: ${item.author} \n`);
+      if(item.thumbnail){
+        console.log(`Post Thumbnail: ${item.thumbnail}`);
+      }
     });
   }
-  console.log(data.length);
 };
 fetchMediumPosts();
 
