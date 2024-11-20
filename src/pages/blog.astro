@@ -1,11 +1,10 @@
 ---
-import { readAll } from "../lib/markdoc/read";
 import PageLayout from "../layouts/PageLayout.astro";
 import PageMeta from "../components/PageMeta.astro";
 import { SITE_TITLE } from "../config";
 
 
-let mediumPosts = [];
+let mediumPosts: any[] = [];
 
 async function fetchMediumPosts() {
   const response = await fetch(
@@ -14,23 +13,13 @@ async function fetchMediumPosts() {
   const data = await response.json();
 
   if (data.status === 'ok') {
-    mediumPosts = data.items.map((item) => ({
+    mediumPosts = data.items.map((item: { title: any; pubDate: any; link: any; author: any; thumbnail: any; }) => ({
       title: item.title,
       date: item.pubDate,
       link: item.link,
       author: item.author,
       thumbnail: item.thumbnail,
     }));
-
-    mediumPosts.forEach((post) => {
-      console.log(`Post Title: ${post.title}`);
-      console.log(`Post Published at: ${post.date}`);
-      console.log(`Post Original Link: ${post.link}`);
-      console.log(`Post Author: ${post.author} \n`);
-      if (post.thumbnail) {
-        console.log(`Post Thumbnail: ${post.thumbnail}`);
-      }
-    });
   }
 }
 await fetchMediumPosts();
