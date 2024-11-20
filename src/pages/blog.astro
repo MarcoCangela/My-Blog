@@ -1,6 +1,5 @@
 ---
 import { readAll } from "../lib/markdoc/read";
-import { blog } from "../lib/markdoc/frontmatter.schema";
 import PageLayout from "../layouts/PageLayout.astro";
 import PageMeta from "../components/PageMeta.astro";
 import { SITE_TITLE } from "../config";
@@ -35,19 +34,6 @@ async function fetchMediumPosts() {
   }
 }
 await fetchMediumPosts();
-
-const posts = await readAll({
-  directory: "blog",
-  frontmatterSchema: blog,
-});
-
-const sortedPosts = posts
-  .filter((p) => p.frontmatter.draft !== true)
-  .sort(
-    (a, b) =>
-      new Date(b.frontmatter.date).valueOf() -
-      new Date(a.frontmatter.date).valueOf()
-  );
 ---
 
 <PageLayout>
@@ -57,16 +43,12 @@ const sortedPosts = posts
       {mediumPosts.map((post) => (
         <li>
           <a href={post.link}>{post.title}</a>
-          <div>Published at: {post.date}</div>
+          <div style="display: flex; align-items: center;">
+            <div style="margin-right: 8px; font-style: italic;">
+              {new Date(post.date).toLocaleDateString('en-GB', { year: 'numeric', month: 'short', day: 'numeric' })}
+            </div>
+          </div>
           {post.thumbnail && <img src={post.thumbnail} alt={post.title} />}
-        </li>
-      ))}
-    </ul>
-    <ul>
-      {sortedPosts.map((post) => (
-        <li>
-          <a href={`/blog/${post.slug}`}>{post.frontmatter.title}</a>
-          <div>Published at: {post.frontmatter.date.toLocaleDateString()}</div>
         </li>
       ))}
     </ul>
