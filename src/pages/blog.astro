@@ -31,7 +31,7 @@ await fetchMediumPosts();
     <ul>
       {mediumPosts.map((post) => (
         <li>
-          <a href={post.link}>{post.title}</a>
+          <a href={post.link} target="_blank" rel="noopener noreferrer">{post.title}</a>
           <div style="display: flex; align-items: center;">
             <div style="margin-right: 8px; font-style: italic;">
               {new Date(post.date).toLocaleDateString('en-GB', { year: 'numeric', month: 'short', day: 'numeric' })}
