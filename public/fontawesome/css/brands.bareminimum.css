@@ -21,7 +21,6 @@
   font-weight: 400;
 }
 
-
 .fa-github:before {
   content: "\f09b";
 }
@@ -60,4 +59,10 @@
 }
 .fa-staylinked:before {
   content: "\f3f5";
+}
+.fa-medium:before {
+  content: "\f23a";
+}
+.fa-medium-m:before {
+  content: "\f23a";
 }
