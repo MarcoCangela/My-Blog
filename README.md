@@ -1,1 +1,1 @@
-This is a repo for my personal blog that can be visited at the following link. https://marcogarujo.netlify.app/
+This is a repo for my personal website that can be visited at the following link. https://marcogarujo.netlify.app/
