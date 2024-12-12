@@ -28,7 +28,7 @@ await fetchMediumPosts();
 <PageLayout>
   <PageMeta title={`Blog | ${SITE_TITLE}`} slot="meta" />
   <section slot="main">
-    <ul id="blogposts">
+    <ul id="listOfPosts">
       {mediumPosts.map((post) => (
         <li>
           <a href={post.link} target="_blank" rel="noopener noreferrer">{post.title}</a>
